@@ -1,0 +1,107 @@
+@import '../../styles/Variables.scss';
+@import '../../styles/Responsive.scss';
+
+
+.navbar{
+    padding-inline: 10%;
+   
+
+    .wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: .5px solid $Grayish-blue;
+        padding-block: 2.5rem ;
+
+        .left{
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+
+            .logo{
+                cursor: pointer;
+            }
+    
+            .navLinks{
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+                color: $Dark-grayish-blue;
+
+                li{
+                    cursor: pointer;
+                    position: relative;
+                    transition: .3s;
+
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        left: 50%;
+                        width: 0%;
+                        height: 3px;
+                        background: $Orange;
+                        bottom: -3.5rem;
+                        opacity: 0;
+                        transition: .3s;
+                    }
+
+                    &:hover{
+                        color: black;
+
+                        &::before{
+                            width: 100%;
+                            left: 0;
+                            opacity: 1;
+                        }
+                       
+                    }
+                }
+            }
+        }
+
+        .right{
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+
+            .cartIconWrapper{
+                position: relative;
+                cursor: pointer;
+
+                img{
+                    transition: .3s;
+                }
+
+                &:hover{
+
+                    img{
+                        filter: brightness(0);
+                    }
+                }
+
+
+
+                span{
+                    position: absolute;
+                    background:  $Orange;
+                    color: $White;
+                    top: -5px;
+                    left: 10px;
+                    font-size: 9px;
+                    padding: .01rem .4rem;
+                    border-radius: .3rem;
+                    font-weight: bold;
+                }
+            }
+
+            .avatar{
+                width: 50px;
+                border: 2px solid $Orange;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+        }
+    }
+
+ 
+}
