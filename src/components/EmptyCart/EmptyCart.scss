@@ -1,0 +1,32 @@
+@import '../../styles/Variables.scss';
+@import '../../styles/Responsive.scss';
+
+.emptyCart{
+    position: fixed;
+    right: 7%;
+    top: 13%;
+    background: $White;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    width: 355px;
+    height: 255px;
+
+    h1{
+        padding: 1.5rem;
+        font-size: 16px;
+        border-bottom: .5px solid $Grayish-blue;
+    }
+
+
+    p{
+        font-weight: bold;
+        color: $Dark-grayish-blue;
+        font-size: 14px;
+        width: 100%;
+        text-align: center;
+        margin-block: auto;
+        margin-top: 5rem;
+
+    }
+    
+}

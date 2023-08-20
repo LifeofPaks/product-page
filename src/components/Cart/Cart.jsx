@@ -3,7 +3,7 @@ import './Cart.scss'
 import productImage from '../../images/image-product-1-thumbnail.jpg'
 import Trash from '../../images/icon-delete.svg'
 
-const Cart = () => {
+const Cart = ({isEmptyCart}) => {
   return (
     <div className='cart'>
         <h1>Cart</h1>
@@ -14,7 +14,7 @@ const Cart = () => {
                 <p>$125.00 x 3 <span>$375.00</span></p> 
             </div>
 
-            <img src={Trash} alt="trash" className="trash" />
+            <img src={Trash} alt="trash" className="trash" onClick={isEmptyCart} />
         </div>
             
         <div className="buttonWrapper">

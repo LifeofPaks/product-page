@@ -2,5 +2,147 @@
 @import '../../styles/Responsive.scss';
 
 .product{
+    display: flex;
+    align-items: center;
+    margin-top: 5.6rem;
+    padding-inline: 13.4rem;
+    gap: 125px;
+    color: $Black-opac;
+
+    .left{
+
+        
+        .MainImage{
+            width: 440px;
+            border-radius: 1rem;
+            margin-bottom: 30px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .imgThumbnailsWrapper{
+            display: flex;
+            align-items: center;
+            gap: 32px;
+
+            .wrap{
+                border: 2px solid transparent;
+                border-radius: .5rem;
+                width: 86px;
+                height: 90px;
+                overflow: hidden;
+
+
+                &.active{
+                    border-color:$Orange;
+                    
+                    img{
+                        opacity: .3;
+
+                    }
+                }
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                    cursor: pointer;
+                    transition: .3s;
     
+                }
+            }
+        }
+    }
+
+    .right{
+        h1{
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: $Orange;
+            margin-bottom: 1rem;
+        }
+
+        h2{
+            text-transform: capitalize;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: $Black-opac;
+        }
+
+        p{
+            color: $Dark-grayish-blue;
+            line-height: 25px;
+            margin-bottom: 1.5rem;
+        }
+
+        h3{
+            font-size: 1.7rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: .8rem;
+
+            span{
+                background: $Pale-orange;
+                color: $Orange;
+                font-size: 1rem;
+                padding: .2rem .5rem;
+                border-radius: .3rem;
+            }
+        }
+
+        h4{
+            letter-spacing: 1px;
+            color: $Grayish-blue;
+            text-decoration: line-through;
+            margin-bottom: 2rem;
+        }
+
+        .btnsWrapper{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .leftBtnWrapper{
+                display: flex;
+                align-items: center;
+                gap: 2.5rem;
+                background: $Light-grayish-blue;
+                padding: 1.2rem 1rem;
+                border-radius: .7rem;
+
+                span{
+                    font-weight: bold;
+                }
+            }
+
+            .add{
+                background: $Orange;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.1rem 1rem;
+                color: $White;
+                border-radius: .7rem;
+                width: 270px;
+                gap: 1rem;
+                box-shadow: 0 3px 15px 0 $Orange;
+                transition: .3s;
+                 &:hover{
+                    opacity: .7;
+                 }
+
+                img{
+                    width: 20px;
+                }
+
+                span{
+                    letter-spacing: 1px;
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
 }
