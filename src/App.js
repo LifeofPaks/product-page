@@ -1,95 +1,107 @@
 import { useRef, useState } from "react";
 import "./App.scss";
-import Cart from "./components/Cart/Cart";
 import Navbar from "./components/Navbar/Navbar";
 import Product from "./components/Product/Product";
-import EmptyCart from "./components/EmptyCart/EmptyCart";
 import ProductModal from "./components/ProductModal/ProductModal";
-import MainImage1 from "../src/images/image-product-1.jpg";
-import MainImage2 from "../src/images/image-product-2.jpg";
-import MainImage3 from "../src/images/image-product-3.jpg";
-import MainImage4 from "../src/images/image-product-4.jpg";
+
+import { imageData } from "../src/Helper/data";
 
 function App() {
-  const [imageIndex, setImageIndex] = useState(0);
-  const [modalActive, setModalActive] = useState(false);
-  const [openCart, setOpenCart] = useState(false)
-  const [cartIsEmpty, setCartIsEmpty] = useState(false)
+  const [productsImage] = useState(imageData);
+  const [value, setValue] = useState(0);
+  const [modalActive, setModalAvtive] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [openCart, setOpenCart] = useState(false);
+  const [isEmptyCart, setIsEmptyCart] = useState(false);
+  const [cartItems, setCartItems] = useState(2);
+  const [isNotEmpty, setIsNotEmpty] = useState(true);
 
-  const navigation = useRef();
-
-  const productImages = [MainImage1, MainImage2, MainImage3, MainImage4];
-  const productImagesLength = productImages.length
-
-  const imageChange = (e) => {
-    setImageIndex(e.currentTarget.dataset.index);
-
-    let children = navigation.current.children;
-
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      child.classList.remove("active");
-    }
-
-    e.currentTarget.classList.add("active");
-  };
+  // TOGGLE MODAL FUNCTION
 
   const toggleModal = () => {
-    setModalActive(!modalActive);
+    setModalAvtive(!modalActive);
   };
 
+  // NAVIGATE IMAGE SLIDE FUNCTION
   const navLeft = () => {
-    
-    if(imageIndex === 0){
-      setImageIndex(0)
-    } else{
-      setImageIndex(imageIndex - 1)
-    }
-
-  };
-
-  const navright = () => {
-
-    if(imageIndex === productImagesLength - 1 ){
-      setImageIndex(productImagesLength - 1)
-    }
-    else{
-
-      setImageIndex(imageIndex + 1)
+    const productsImageLength = productsImage.length - 1;
+    if (value == 0) {
+      setValue(productsImageLength);
+    } else {
+      setValue(value - 1);
     }
   };
 
-  const toggleCart = ()=>{
-    setOpenCart(!openCart)
-  }
+  const navRight = () => {
+    const productsImageLength = productsImage.length - 1;
 
-  const isEmptyCart = () =>{
-    setCartIsEmpty(true)
-  }
+    if (value == productsImageLength) {
+      setValue(0);
+    } else {
+      setValue(value + 1);
+    }
+  };
+
+  // QUANTITY ADJUSTMENT FUNCTIONS
+
+  const increase = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const reduceItem = () => {
+    if (quantity == 1) {
+      setQuantity(1);
+    } else {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  // TOGGLE OPEN/CLOSE CART FUNCTION
+  const toggleCart = () => {
+    setOpenCart(!openCart);
+  };
+
+  // CART STATUS FUNCTION
+
+  const noCartItem = () => {
+    setIsEmptyCart(true);
+  };
+
+
+  const MainImage = productsImage[value].DisplayImage;
 
   return (
     <div className="App">
-      <Navbar toggleCart={toggleCart} />
-      <Product
-        imageIndex={imageIndex}
-        navigation={navigation}
-        imageChange={imageChange}
-        toggleModal={toggleModal}
-        productImages={productImages}
+      <Navbar
+        toggleCart={toggleCart}
         openCart={openCart}
         isEmptyCart={isEmptyCart}
-        cartIsEmpty={cartIsEmpty}
+        noCartItem={noCartItem}
+        cartItems={cartItems}
+        isNotEmpty={isNotEmpty}
+      />
+
+      <Product
+        MainImage={MainImage}
+        productsImage={productsImage}
+        setValue={setValue}
+        value={value}
+        modalActive={modalActive}
+        toggleModal={toggleModal}
+        quantity={quantity}
+        increase={increase}
+        reduceItem={reduceItem}
       />
 
       <ProductModal
-        imageIndex={imageIndex}
-        navigation={navigation}
-        imageChange={imageChange}
+        MainImage={MainImage}
+        productsImage={productsImage}
+        setValue={setValue}
+        value={value}
         modalActive={modalActive}
         toggleModal={toggleModal}
         navLeft={navLeft}
-        navright={navright}
-        productImages={productImages}
+        navRight={navRight}
       />
     </div>
   );

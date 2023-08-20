@@ -1,48 +1,40 @@
 import React from "react";
 import "./Product.scss";
-import Image1 from "../../images/image-product-1-thumbnail.jpg";
-import Image2 from "../../images/image-product-2-thumbnail.jpg";
-import Image3 from "../../images/image-product-3-thumbnail.jpg";
-import Image4 from "../../images/image-product-4-thumbnail.jpg";
 import Plus from "../../images/icon-plus.svg";
 import Minus from "../../images//icon-minus.svg";
 import Cart from "../Cart/Cart";
 import EmptyCart from "../EmptyCart/EmptyCart";
 
-const Product = ({ imageIndex, navigation, imageChange, toggleModal, productImages, openCart,isEmptyCart,
-  cartIsEmpty }) => {
-    
+const Product = ({
+  MainImage,
+  productsImage,
+  setValue,
+  value,
+  toggleModal,
+  quantity,
+  increase,
+  reduceItem,
+}) => {
   return (
     <div className="product">
       <div className="left">
         <img
-          src={productImages[imageIndex]}
+          src={MainImage}
           alt="MainImage"
           className="MainImage"
           onClick={toggleModal}
         />
-
-        <div className="imgThumbnailsWrapper" ref={navigation}>
-          <div className="wrap active" data-index={0} onClick={imageChange}>
-            <img
-              data-index={0}
-              src={Image1}
-              alt="Image1"
-              onClick={imageChange}
-            />
-          </div>
-          <div className="wrap" data-index={1} onClick={imageChange}>
-            <img src={Image2} alt="Image2" />
-          </div>
-
-          <div className="wrap" data-index={2} onClick={imageChange}>
-            <img src={Image3} alt="Image3" />
-          </div>
-
-          <div className="wrap" data-index={3} onClick={imageChange}>
-            <img src={Image4} alt="Image4" />
-          </div>
-        </div>
+        <ul className="imgThumbnailsWrapper">
+          {productsImage.map((item, index) => (
+            <li
+              className={`wrap ${value == index ? "active" : ""}`}
+              key={item.id}
+              onClick={() => setValue(index)}
+            >
+              <img src={item.ThumImage} alt="thumbImage" />
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div className="right">
@@ -60,9 +52,9 @@ const Product = ({ imageIndex, navigation, imageChange, toggleModal, productImag
 
         <div className="btnsWrapper">
           <div className="leftBtnWrapper">
-            <img src={Minus} alt="img" />
-            <span>0</span>
-            <img src={Plus} alt="img" />
+            <img src={Minus} alt="img" onClick={reduceItem}/>
+            <span>{quantity}</span>
+            <img src={Plus} alt="img" onClick={increase} />
           </div>
 
           <button className="add">
@@ -74,14 +66,6 @@ const Product = ({ imageIndex, navigation, imageChange, toggleModal, productImag
           </button>
         </div>
       </div>
-
-      {
-        openCart && <Cart isEmptyCart={isEmptyCart}/>
-      }
-
-      {
-        openCart && cartIsEmpty && <EmptyCart/>
-      }
     </div>
   );
 };

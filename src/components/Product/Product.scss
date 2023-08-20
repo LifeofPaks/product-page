@@ -111,6 +111,12 @@
                 background: $Light-grayish-blue;
                 padding: 1.2rem 1rem;
                 border-radius: .7rem;
+                width: 150px;
+
+                img{
+                    cursor: pointer;
+                    width: 20px;
+                }
 
                 span{
                     font-weight: bold;

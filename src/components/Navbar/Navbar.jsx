@@ -4,8 +4,11 @@ import Logo from '../../images/logo.svg'
 import Avatar from '../../images/image-avatar.png'
 import CartIcon from '../../images/icon-cart.svg'
 import Hamburger from '../../images/icon-menu.svg'
+import Cart from '../Cart/Cart'
+import EmptyCart from '../EmptyCart/EmptyCart'
 
-const Navbar = ({toggleCart}) => {
+const Navbar = ({toggleCart, openCart, isEmptyCart, noCartItem, cartItems,
+    isNotEmpty,}) => {
   return (
     <div className='navbar'>
         <div className="wrapper">
@@ -26,14 +29,26 @@ const Navbar = ({toggleCart}) => {
             <div className="right">
                 <div className="cartIconWrapper">
                     <img src={CartIcon} alt="cartIcon" onClick={toggleCart} />
-                    <span>3</span>
+                    {
+                        isNotEmpty &&
+                    <span>{cartItems}</span>
+                    }
                 </div>
 
                 <img src={Avatar} alt="avatar" className='avatar'/>
             </div>
              <img src={Hamburger} alt="hamburger" className="hamburger" />
         </div>
-     
+
+        {
+            openCart && <Cart noCartItem={noCartItem}/>
+        }
+
+        {
+            openCart && isEmptyCart && <EmptyCart/>
+        }
+
+
     </div>
   )
 }
