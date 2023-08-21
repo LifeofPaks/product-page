@@ -116,7 +116,7 @@
 
         @include Mobile{
           display: block;
-          position: fixed;
+          position: absolute;
           top: 2rem;
           left: 2rem;
         }
