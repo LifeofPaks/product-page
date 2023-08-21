@@ -12,9 +12,10 @@ function App() {
   const [modalActive, setModalAvtive] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [openCart, setOpenCart] = useState(false);
-  const [isEmptyCart, setIsEmptyCart] = useState(false);
-  const [cartItems, setCartItems] = useState(2);
-  const [isNotEmpty, setIsNotEmpty] = useState(true);
+  const [isEmptyCart, setIsEmptyCart] = useState(true);
+  const [cartItems, setCartItems] = useState(0);
+  const [isNotEmpty, setIsNotEmpty] = useState(false);
+  const [showMenu, setShowMenu] = useState(false)
 
   // TOGGLE MODAL FUNCTION
 
@@ -65,7 +66,20 @@ function App() {
 
   const noCartItem = () => {
     setIsEmptyCart(true);
+      setIsNotEmpty(false)
+      
   };
+
+  const addToCart = ()=>{
+    setIsNotEmpty(true)
+    setCartItems(quantity)
+    setIsEmptyCart(false)
+  }
+
+  // TOGGLE MOBILE MENU FUNCTION
+  const toggleMobileMenu = () =>{
+    setShowMenu(!showMenu)
+  }
 
 
   const MainImage = productsImage[value].DisplayImage;
@@ -79,6 +93,9 @@ function App() {
         noCartItem={noCartItem}
         cartItems={cartItems}
         isNotEmpty={isNotEmpty}
+        quantity={quantity}
+        toggleMobileMenu={toggleMobileMenu}
+        showMenu={showMenu}
       />
 
       <Product
@@ -91,6 +108,9 @@ function App() {
         quantity={quantity}
         increase={increase}
         reduceItem={reduceItem}
+        addToCart={addToCart}
+        navLeft={navLeft}
+        navRight={navRight}
       />
 
       <ProductModal

@@ -9,6 +9,15 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 0.5rem;
 
+    @include Mobile{
+        position: absolute;
+        right: 0;
+        top: 9%;
+        z-index: 10;
+        left: 0;
+        width: 100%;
+    }
+
     h1{
         padding: 1.5rem;
         font-size: 16px;

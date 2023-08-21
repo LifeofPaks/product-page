@@ -33,3 +33,9 @@ export const imageData =[
         ThumImage : Thum4,
     },
 ]
+
+export const cartCheckoutData = {
+    id: 1,
+    discount : 0.5,
+    price : 250,
+}

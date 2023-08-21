@@ -9,21 +9,75 @@
     gap: 125px;
     color: $Black-opac;
 
-    .left{
+    @include Mobile{
+        flex-direction: column;
+        padding-inline: initial;
+        margin-top: 0;
+        gap: initial;
+      }
 
+    .left{
         
+        @include Mobile{
+            width: 100%;   
+            position: relative; 
+        }   
+
         .MainImage{
             width: 440px;
             border-radius: 1rem;
             margin-bottom: 30px;
             cursor: pointer;
             transition: .3s;
+           
+
+            @include Mobile{
+                width: 100%;
+                border-radius: initial;
+                margin-bottom: 0;
+              }
+        }
+
+        .slider{
+            display: none;
+
+            .naviIcon{
+                height: 40px;
+                width: 40px;
+                background: $White;
+                border-radius: 50%;
+                font-size: 14px;
+                display: grid;
+                place-content: center;
+                position: absolute;
+                right: .7rem;
+                top: 50%;
+                transform: translateY(-50%);
+                transition: .3s;
+                cursor: pointer;
+
+                &.left{
+                    left: .7rem;
+                }
+
+                &:hover{
+                    color: $Orange;
+                }
+            }
+
+            @include Mobile{
+                display: block;
+              }
         }
 
         .imgThumbnailsWrapper{
             display: flex;
             align-items: center;
             gap: 32px;
+
+            @include Mobile{
+                display: none;
+              }
 
             .wrap{
                 border: 2px solid transparent;
@@ -54,6 +108,12 @@
     }
 
     .right{
+
+        @include Mobile{
+            width: 100%;   
+            padding: 1rem; 
+        }   
+
         h1{
             font-size: 14px;
             text-transform: uppercase;
@@ -67,6 +127,11 @@
             font-size: 3rem;
             margin-bottom: 2rem;
             color: $Black-opac;
+
+            @include Mobile{
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }  
         }
 
         p{
@@ -75,6 +140,15 @@
             margin-bottom: 1.5rem;
         }
 
+        .info{
+
+            @include Mobile{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 2rem;
+            }  
+
         h3{
             font-size: 1.7rem;
             display: flex;
@@ -82,6 +156,10 @@
             gap: 1rem;
             letter-spacing: 1px;
             margin-bottom: .8rem;
+
+            @include Mobile{
+                margin-bottom: 0;
+            }  
 
             span{
                 background: $Pale-orange;
@@ -97,12 +175,24 @@
             color: $Grayish-blue;
             text-decoration: line-through;
             margin-bottom: 2rem;
+
+            @include Mobile{
+                margin-bottom: 0;
+            }  
+        }
+
         }
 
         .btnsWrapper{
             display: flex;
             align-items: center;
             gap: 1rem;
+
+            @include Mobile{
+                flex-direction: column;
+                margin-bottom: 2rem;
+                width: 100%;
+            }  
 
             .leftBtnWrapper{
                 display: flex;
@@ -113,9 +203,19 @@
                 border-radius: .7rem;
                 width: 150px;
 
+                @include Mobile{
+                    width: 100%;
+                    justify-content: space-between;
+                }  
+
                 img{
                     cursor: pointer;
                     width: 20px;
+
+
+            @include Mobile{
+                width: 16px;
+            }  
                 }
 
                 span{
@@ -135,6 +235,12 @@
                 gap: 1rem;
                 box-shadow: 0 3px 15px 0 $Orange;
                 transition: .3s;
+
+                @include Mobile{
+                    width: 100%;
+                }  
+
+
                  &:hover{
                     opacity: .7;
                  }

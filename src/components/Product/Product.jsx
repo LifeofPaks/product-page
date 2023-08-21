@@ -2,8 +2,9 @@ import React from "react";
 import "./Product.scss";
 import Plus from "../../images/icon-plus.svg";
 import Minus from "../../images//icon-minus.svg";
-import Cart from "../Cart/Cart";
-import EmptyCart from "../EmptyCart/EmptyCart";
+import { cartCheckoutData } from "../../Helper/data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const Product = ({
   MainImage,
@@ -14,6 +15,9 @@ const Product = ({
   quantity,
   increase,
   reduceItem,
+  addToCart,
+  navLeft,
+  navRight,
 }) => {
   return (
     <div className="product">
@@ -24,6 +28,17 @@ const Product = ({
           className="MainImage"
           onClick={toggleModal}
         />
+
+        <div className="slider">
+        <div className="naviIcon left" onClick={navLeft}>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </div>
+
+            <div className="naviIcon" onClick={navRight}>
+              <FontAwesomeIcon icon={faAngleRight} />
+            </div>
+        </div>
+
         <ul className="imgThumbnailsWrapper">
           {productsImage.map((item, index) => (
             <li
@@ -45,19 +60,23 @@ const Product = ({
           Featuring a durable rubber outer sole, they'll withstand everything
           the weather can offer.
         </p>
+
+        <div className="info">
         <h3>
-          $125.00 <span>50%</span>
+          ${cartCheckoutData.price * cartCheckoutData.discount}.00 <span>50%</span>
         </h3>
-        <h4>$250.00</h4>
+        <h4>${cartCheckoutData.price}.00</h4>
+        </div>
+     
 
         <div className="btnsWrapper">
           <div className="leftBtnWrapper">
-            <img src={Minus} alt="img" onClick={reduceItem}/>
+            <img src={Minus} alt="img" onClick={reduceItem} />
             <span>{quantity}</span>
             <img src={Plus} alt="img" onClick={increase} />
           </div>
 
-          <button className="add">
+          <button className="add" onClick={addToCart}>
             <img
               src="https://img.icons8.com/sf-regular/48/FFFFFF/shopping-cart.png"
               alt="shopping-cart"
