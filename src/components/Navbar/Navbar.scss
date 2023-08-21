@@ -161,9 +161,14 @@
 
       .avatar {
         width: 50px;
-        border: 2px solid $Orange;
+        border: 2px solid transparent;
         border-radius: 50%;
         cursor: pointer;
+        transition: .3s;
+
+        &:hover{
+          border: 2px solid $Orange;
+        }
 
         @include Mobile{
           width: 25px;

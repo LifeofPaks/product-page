@@ -84,7 +84,14 @@
                 border-radius: .5rem;
                 width: 86px;
                 height: 90px;
-                overflow: hidden;
+                overflow: hidden;  transition: .3s;
+
+                &:hover{
+                    img{
+                        opacity: .3;
+
+                    }
+                }
 
 
                 &.active{
@@ -211,6 +218,11 @@
                 img{
                     cursor: pointer;
                     width: 20px;
+                    transition: .3s;
+
+                    &:hover{
+                        opacity: .5;
+                    }
 
 
             @include Mobile{

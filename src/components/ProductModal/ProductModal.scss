@@ -94,11 +94,16 @@
     }
 
     .closeIcon{
-        color: $Orange;
+        color: $White;
         font-size: 28px;
         position: fixed;
         top: 4%;
         right: 30%;
         cursor: pointer;
+        transition: .3s;
+
+        &:hover{
+            color: $Orange;
+        }
     }
 }
